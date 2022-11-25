@@ -1,10 +1,13 @@
 import React from 'react';
+import {Link, Navigate, useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import {REVIEW_USER_CARD} from 'constants/reviews/reviewUserCard';
 
 const UserCard = (props) => {
+    const navigate = useNavigate();
+
     return (
-        <div className={'home-page__user-card'}>
+        <div className={'home-page__user-card'} onClick={() => navigate('/characterID')}>
             <h2 className={'character-name'}>Name</h2>
             <p className={'status'}>status</p>
             <div>

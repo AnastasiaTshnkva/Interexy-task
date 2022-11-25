@@ -1,6 +1,6 @@
-import {configureStore, createStore, applyMiddleware, compose} from '@reduxjs/toolkit';
+import { createStore, applyMiddleware, compose} from '@reduxjs/toolkit';
 import RootReducer from 'store/reducers/RootReducer';
-import { persistReducer, createMigrate, persistStore } from 'redux-persist';
+import { persistReducer, persistStore } from 'redux-persist';
 import hardSet from 'redux-persist/es/stateReconciler/hardSet';
 import thunk from 'redux-thunk';
 import storage from 'redux-persist/lib/storage';
