@@ -6,10 +6,14 @@ article,aside,audio,canvas,command,datalist,details,embed,figcaption,figure,foot
 
 :root {
   --main-text-color: #000000;
+  --main-bg-color: #ffffff;
   --light-text-color: #ffffff;
-  --header-bg-color: #053c83;
-  --accent-color: #053c83;
-  --parts-bg-color: #bdd5ef
+  --accent-color: #f56903;
+  --parts-bg-color: #3d3a3a;
+  --home-page-bg-color: #000000;
+  --green: #2fff00;
+  --red: #ff0000;
+  --grey: #bdbaba;
 }
 
 * {
@@ -24,14 +28,34 @@ article,aside,audio,canvas,command,datalist,details,embed,figcaption,figure,foot
   align-items: center;
   padding: 20px;
   min-height: 70px;
-  border-bottom: 2px solid var(--header-bg-color);
+  border-bottom: 2px solid var(--parts-bg-color);
 }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .green {
+    background-color: var(--green);
+  }
+
+  .red {
+    background-color: var(--red);
+  }
+
+  .grey {
+    background-color: var(--grey);
+  }
 
 .home-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: calc(100vh - 70px - 50px);
+
 
   .home-page__title {
     display: block;
@@ -44,48 +68,96 @@ article,aside,audio,canvas,command,datalist,details,embed,figcaption,figure,foot
   .home-page__user-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    width: 90vw;
-    margin-bottom: 20px;
+    //width: 100vw;
+    padding: 50px;
+    background-color: var(--home-page-bg-color);
+    color: var(--light-text-color);
 
     .home-page__user-card {
-      margin: 5px;
-      padding: 15px;
+      display: flex;
+      margin: 15px;
       cursor: pointer;
       background-color: var(--parts-bg-color);
       border-radius: 10px;
-      min-height: 200px;
+      max-height: 200px;
 
-      .character-name {
-        color: var(--accent-color);
+    .home-page__img {
+      max-height: 100%;
+      border-radius: 10px 0 0 10px;
+    }
+
+    .home-page__info {
+      padding: 20px 30px;
+      .home-page__name {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 30px;
+        &:hover {
+          color: var(--accent-color);
+        }
+        }
+      .home-page__bio {
+        display: flex;
+        align-items: center;
+      }
       }
     }
+    }
   }
-}
 
 .current-character {
   display: flex;
-  flex-direction: column;
   align-items: center;
   min-height: calc(100vh - 70px - 50px);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: var(--home-page-bg-color);
+  color: var(--light-text-color);
 
-  .current-character__name {
-    display: block;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    font-size: 30px;
-    line-height: 35px;
-    font-weight: 600;
-  }
+  .current-character__card {
+    display: flex;
+    align-items: center;
+    background-color: var(--parts-bg-color);
+    border-radius: 30px;
+    width: 100%;
+    margin-right: 30px;
+    margin-left: 30px;
 
-  .current-character__last-location,
-  .current-character__first-seen {
-    margin-top: 20px;
-  }
+    .current-character__img {
+      max-width: 100%;
+      border-radius: 30px 0 0 30px;
+    }
+    .current-character__info {
+      margin: 20px;
+      .current-character__name {
+        display: block;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        font-size: 30px;
+        line-height: 35px;
+        font-weight: 600;
+      }
 
-  .current-character__last-location-caption,
-  .current-character__first-seen-caption {
-    color: var(--accent-color);
-    font-weight: 600;
+      .current-character__state {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .current-character__gender,
+      .current-character__origin {
+        display: flex;
+      }
+    }
+
+    .answer, .caption {
+      display: block;
+      margin: 5px;
+    }
+
+    .caption {
+      font-weight: 600;
+    }
   }
 }
 
@@ -101,6 +173,7 @@ article,aside,audio,canvas,command,datalist,details,embed,figcaption,figure,foot
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 2px solid var(--header-bg-color);
+  background-color: var(--home-page-bg-color);
+  color: var(--light-text-color);
   height: 50px;
 }
