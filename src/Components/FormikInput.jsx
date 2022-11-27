@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 const FormikInput = (props) => {
     return (
-        <StyledFormikInput type={props.type} name={props.name} placeholder={props.placeholder}
+        <input type={props.type} name={props.name} placeholder={props.placeholder}
                            value={props.value} onChange={props.onChangeProps ? props.onChangeProps : null}>
-        </StyledFormikInput>
+        </input>
     )
 };
 

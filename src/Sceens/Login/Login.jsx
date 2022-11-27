@@ -9,6 +9,9 @@ const Login = (props) => {
                 <Form>
                     <h2>Login Page</h2>
                     <FormikInput type={'text'} name={'name'} placeholder={'user name'}/>
+                    <FormikInput type={'email'} name={'email'} placeholder={'user email'}/>
+                    <FormikInput type={'password'} name={'password'} placeholder={'user password'}/>
+                    <button type={}></button>
                 </Form>
             </Formik>
         </div>

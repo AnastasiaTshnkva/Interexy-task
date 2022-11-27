@@ -6,7 +6,7 @@ import {
 
 const initState = {
     CharactersLoading: false,
-    CharactersData: [],
+    CharactersData: {},
     CharactersError: null,
 };
 

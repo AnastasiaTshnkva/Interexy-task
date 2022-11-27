@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import UserCard from 'Sceens/HomePage/Components/UserCard';
 import { useDispatch, useSelector } from 'react-redux';
+import {useNavigate, useParams} from 'react-router-dom';
 import {showCharactersData, showCharactersError, showCharactersLoading} from 'store/selectors';
 import {
     getCharactersErrorAction,
     getCharactersSuccessAction,
     setCharactersRequestAction
-} from "../../../store/actions/charactersActions";
+} from 'store/actions/charactersActions';
 
 const UsersList = (props) => {
     const dispatch = useDispatch();
+
     const [characters, setCharacters] = useState([]);
-    const [url, setUrl] = useState('https://rickandmortyapi.com/api/character')
+    const [url, setUrl] = useState('https://rickandmortyapi.com/api/character/?page=1');
+    const [prevPage, setPrevPage] = useState('');
+    const [nextPage, setNextPage] = useState('')
 
     const charactersIsLoading = useSelector(showCharactersLoading);
     const charactersDataFromStore = useSelector(showCharactersData);
@@ -24,14 +28,31 @@ const UsersList = (props) => {
             .then(data => {
                 return data.json()
                     .then(data => {
-                        dispatch(getCharactersSuccessAction(data.results))
+                        dispatch(getCharactersSuccessAction(data))
                     })})
             .catch(err => dispatch(getCharactersErrorAction(err)))
     }, [])
 
 
     useEffect(() => {
-        setCharacters(charactersDataFromStore);
+        dispatch(setCharactersRequestAction);
+
+        fetch(url)
+            .then(data => {
+                return data.json()
+                    .then(data => {
+                        dispatch(getCharactersSuccessAction(data))
+                    })})
+            .catch(err => dispatch(getCharactersErrorAction(err)))
+    }, [url])
+
+    useEffect(() => {
+        setCharacters(charactersDataFromStore.results);
+    }, [charactersDataFromStore])
+
+    useEffect(() => {
+        setPrevPage(charactersDataFromStore.info.prev);
+        setNextPage(charactersDataFromStore.info.next);
     }, [charactersDataFromStore])
 
     const getCharacters = () => {
@@ -53,23 +74,41 @@ const UsersList = (props) => {
               )
           })
       }
-
       return <div>No data yet</div>
     };
 
+    const getPrevPage = () => {
+        if(prevPage) {
+            return (
+                <p className={'home-page__pageSwitcher-prev'} onClick={() => {
+                    console.log('prev');
+                    setUrl(prevPage);
+                }}>Previous page</p>
+            )
+        }
+    };
+
+    const getNextPage = () => {
+        if(nextPage) {
+            return (
+                <p className={'home-page__pageSwitcher-next'} onClick={() => {
+                    console.log('next');
+                    setUrl(nextPage);
+                }}>Next page</p>
+                )
+        }
+    };
+
     return (
-        <div>
+        <React.Fragment>
             <div className={'home-page__user-list'}>
                 {getCharacters()}
             </div>
-           {/*<div className={'home-page__switch-dots'}>*/}
-           {/*     <div>1</div>*/}
-           {/*     <div>2</div>*/}
-           {/*     <div>3</div>*/}
-           {/*     <div>4</div>*/}
-           {/*     <div>5</div>*/}
-           {/*</div>*/}
-        </div>
+            <div className={'home-page__pageSwitcher'}>
+                {getPrevPage()}
+                {getNextPage()}
+            </div>
+        </React.Fragment>
 
     )
 };
