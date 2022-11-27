@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 const FormikInput = (props) => {
     return (
         <input type={props.type} name={props.name} placeholder={props.placeholder}
-                           value={props.value} onChange={props.onChangeProps ? props.onChangeProps : null}>
+                           value={props.value} onChange={props.onChangeProps ? props.onChangeProps : null}
+               className={'input'}>
         </input>
     )
 };

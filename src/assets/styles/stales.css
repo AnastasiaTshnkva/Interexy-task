@@ -212,12 +212,69 @@ mark, rp, rt, ruby, summary, time {
   font-weight: 600;
 }
 
+.input {
+  margin-top: 25px;
+  width: 95%;
+  padding: 7px;
+  border: 1px solid var(--main-text-color);
+  color: var(--light-text-color);
+  background-color: var(--parts-bg-color);
+}
+.input::placeholder {
+  color: var(--light-text-color);
+}
+.input:focus {
+  outline: none;
+}
+
 .login {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 70px - 50px);
+  background-color: var(--home-page-bg-color);
+  color: var(--light-text-color);
+}
+.login .login-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--parts-bg-color);
+  width: 40%;
+  padding-top: 20px;
+  border-radius: 5px;
+}
+.login .login-box .login__title {
+  display: block;
+  padding: 10px;
+  font-size: 32px;
+}
+.login .login-box .login__button {
+  padding: 10px;
+  margin-top: 10px;
+  border: 2px solid var(--light-text-color);
+  border-radius: 5px;
+  width: 100%;
+  color: var(--main-text-color);
+  font-size: 22px;
+  font-weight: 400;
+  background-color: var(--light-text-color);
+  cursor: pointer;
+}
+.login .login-box .login__button:hover {
+  box-shadow: 0 0 10px var(--main-text-color);
+}
+.login .login-box .login__text {
+  display: block;
+  margin-top: 20px;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.login .login-box .login__text:hover {
+  color: var(--accent-color);
 }
 
 .footer {
