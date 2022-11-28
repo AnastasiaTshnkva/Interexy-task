@@ -3,11 +3,9 @@ export const GET_CHARACTERS_SUCCESS = 'GET_CHARACTERS_SUCCESS';
 export const GET_CHARACTERS_ERROR = 'GET_CHARACTERS_ERROR';
 
 
-
-export const setCharactersRequestAction = (value) => {
+export const setCharactersRequestAction = () => {
     return {
         type: SET_CHARACTERS_REQUEST,
-        payload: value,
     };
 };
 

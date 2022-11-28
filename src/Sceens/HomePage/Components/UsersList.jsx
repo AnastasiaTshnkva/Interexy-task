@@ -2,58 +2,56 @@ import React, { useEffect, useState } from 'react';
 import UserCard from 'Sceens/HomePage/Components/UserCard';
 import { useDispatch, useSelector } from 'react-redux';
 import {useNavigate, useParams} from 'react-router-dom';
-import {showCharactersData, showCharactersError, showCharactersLoading} from 'store/selectors';
+import {
+    showCharactersData,
+    showCharactersError,
+    showCharactersLoading,
+    showNextPage,
+    showPrevPage
+} from 'store/selectors';
 import {
     getCharactersErrorAction,
     getCharactersSuccessAction,
     setCharactersRequestAction
 } from 'store/actions/charactersActions';
+import { API_GET_DATA } from 'constants/constant'
 
 const UsersList = (props) => {
     const dispatch = useDispatch();
 
     const [characters, setCharacters] = useState([]);
-    const [url, setUrl] = useState('https://rickandmortyapi.com/api/character/?page=1');
-    const [prevPage, setPrevPage] = useState('');
-    const [nextPage, setNextPage] = useState('')
+    // const [url, setUrl] = useState(API_GET_DATA);
 
     const charactersIsLoading = useSelector(showCharactersLoading);
     const charactersDataFromStore = useSelector(showCharactersData);
     const charactersError = useSelector(showCharactersError);
+    const prevPage = useSelector(showPrevPage);
+    const nextPage = useSelector(showNextPage);
 
-    useEffect(() => {
+    console.log(prevPage, nextPage);
+
+    const getData = (param) => {
         dispatch(setCharactersRequestAction);
 
-        fetch(url)
+        fetch(param)
             .then(data => {
                 return data.json()
                     .then(data => {
+                        console.log(data)
                         dispatch(getCharactersSuccessAction(data))
                     })})
             .catch(err => dispatch(getCharactersErrorAction(err)))
+    };
+
+    useEffect(() => {
+        getData(API_GET_DATA);
     }, [])
 
-
     useEffect(() => {
-        dispatch(setCharactersRequestAction);
-
-        fetch(url)
-            .then(data => {
-                return data.json()
-                    .then(data => {
-                        dispatch(getCharactersSuccessAction(data))
-                    })})
-            .catch(err => dispatch(getCharactersErrorAction(err)))
-    }, [url])
-
-    useEffect(() => {
-        setCharacters(charactersDataFromStore.results);
+        setCharacters(charactersDataFromStore);
     }, [charactersDataFromStore])
 
-    useEffect(() => {
-        setPrevPage(charactersDataFromStore.info.prev);
-        setNextPage(charactersDataFromStore.info.next);
-    }, [charactersDataFromStore])
+    console.log(charactersDataFromStore)
 
     const getCharacters = () => {
       if (charactersIsLoading) {return <div>Loading...</div>}
@@ -81,8 +79,7 @@ const UsersList = (props) => {
         if(prevPage) {
             return (
                 <p className={'home-page__pageSwitcher-prev'} onClick={() => {
-                    console.log('prev');
-                    setUrl(prevPage);
+                    getData(prevPage);
                 }}>Previous page</p>
             )
         }
@@ -93,7 +90,7 @@ const UsersList = (props) => {
             return (
                 <p className={'home-page__pageSwitcher-next'} onClick={() => {
                     console.log('next');
-                    setUrl(nextPage);
+                    getData(nextPage);
                 }}>Next page</p>
                 )
         }

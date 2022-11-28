@@ -10,14 +10,14 @@ const enhancerList = [];
 if(window.__REDUX_DEVTOOLS_EXTENSION__) enhancerList.push(window.__REDUX_DEVTOOLS_EXTENSION__());
 const composeEnhancers = compose(middlewareEnhancer, ...enhancerList);
 
-const persistConfig = {
-    key: 'root',
-    storage,
-    version: 1,
-    stateReconciler: hardSet,
-};
+// const persistConfig = {
+//     key: 'root',
+//     storage,
+//     version: 1,
+//     stateReconciler: hardSet,
+// };
 
-const persistedRootReducer = persistReducer(persistConfig, RootReducer);
+// const persistedRootReducer = persistReducer(persistConfig, RootReducer);
 
-export const store = createStore(persistedRootReducer, composeEnhancers);
-export const persistor = persistStore(store);
+export const store = createStore(RootReducer, composeEnhancers);
+// export const persistor = persistStore(store);

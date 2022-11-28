@@ -5,9 +5,11 @@ import {
 } from 'store/actions/charactersActions';
 
 const initState = {
-    CharactersLoading: false,
-    CharactersData: {},
-    CharactersError: null,
+    isLoading: false,
+    charactersData: [],
+    previousUrl: null,
+    nextUrl: null,
+    error: null,
 };
 
 const CharactersReducer = (state = initState, action) => {
@@ -15,21 +17,23 @@ const CharactersReducer = (state = initState, action) => {
         case SET_CHARACTERS_REQUEST:
             return {
                 ...state,
-                CharactersLoading: true,
+                isLoading: true,
             };
 
         case GET_CHARACTERS_SUCCESS:
             return {
                 ...state,
-                CharactersLoading: false,
-                CharactersData: action.payload,
+                isLoading: false,
+                charactersData: action.payload.results,
+                previousUrl: action.payload.info.prev,
+                nextUrl: action.payload.info.next,
             };
 
         case GET_CHARACTERS_ERROR:
             return {
                 ...state,
-                CharactersLoading: false,
-                CharactersError: action.payload,
+                isLoading: false,
+                error: action.payload,
             };
 
         default:
