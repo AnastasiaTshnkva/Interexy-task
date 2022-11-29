@@ -1,5 +1,6 @@
 export const REVIEW_LOGIN = {
-    TITLE: 'Login',
+    LOGIN_TITLE: 'Login',
+    REGISTRATION_TITLE: 'Registration',
     BUTTON_LOGIN_TITLE: 'Login',
     BUTTON_SIGN_UP_TITLE: 'Sing up',
     BUTTON_REGISTRATION_TITLE: 'Registration',

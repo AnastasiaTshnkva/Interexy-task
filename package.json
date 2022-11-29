@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "build": "webpack",
-    "start": "webpack server"
+    "start": "webpack server",
+    "start node": "node server/app.js",
+    "dev": "nodemon server/app.js"
   },
   "repository": {
     "type": "git",
@@ -28,9 +31,11 @@
     "babel-loader": "^9.1.0",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.2",
+    "express": "^4.18.2",
     "file-loader": "^6.2.0",
     "formik": "^2.2.9",
     "html-webpack-plugin": "^5.5.0",
+    "mongoose": "^6.7.4",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-redux": "^8.0.5",
@@ -45,5 +50,8 @@
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0",
     "webpack-dev-server": "^4.11.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
