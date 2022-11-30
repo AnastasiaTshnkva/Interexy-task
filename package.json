@@ -7,8 +7,8 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack server",
-    "start node": "node server/app.js",
-    "dev": "nodemon server/app.js"
+    "start node": "node server/serverApp.js",
+    "dev": "nodemon server/serverApp.js"
   },
   "repository": {
     "type": "git",
