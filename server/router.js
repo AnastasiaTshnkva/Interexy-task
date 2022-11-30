@@ -1,20 +1,12 @@
 import Router from 'express';
-import User from "./User.js";
+import UserController from './UserController.js';
 
 const router = new Router();
 
-router.post('/users', async (req, res) => {
-    try {
-        const {name, email, password} = req.body;
-        const user = await User.create({name, email, password})
-        res.json(user);
-    } catch (err) {
-        res.status(500).json(err);
-    }});
-
-router.get('/users');
-router.get('/users/:id');
-router.put('/users');
-router.delete('/users/:id');
+router.post('/users', UserController.create);
+router.get('/users', UserController.getAll);
+router.get('/users/:id', UserController.getOne);
+router.put('/users', UserController.update);
+router.delete('/users/:id', UserController.delete);
 
 export default router;

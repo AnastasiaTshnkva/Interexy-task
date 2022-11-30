@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom/client';
 import 'assets/styles/stales.scss';
-
 import App from 'App';
 
 const root =  ReactDom.createRoot(
